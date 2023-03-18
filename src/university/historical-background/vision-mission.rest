@@ -1,0 +1,28 @@
+### get all college
+GET  http://localhost:4000/api/historical-background
+
+
+### get college by id
+GET  http://localhost:4000/api/historical-background/64020f3df13f823de6a7444d
+
+### delete college
+DELETE   http://localhost:4000/api/historical-background/64020f3df13f823de6a7444d
+
+###  create college
+POST  http://localhost:4000/api/historical-background
+Content-Type: application/json
+
+{
+    "titleAr": "medicen",
+    "titleEn": "name en",
+    "descriptionAr": "descriptionAr",
+    "descriptionEn": "description English"
+}
+
+###  update  college
+PUT  http://localhost:4000/api/historical-background/64020f43f13f823de6a74450
+Content-Type: application/json
+
+{
+    "titleAr": "medicen update"
+}

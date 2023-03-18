@@ -1,0 +1,28 @@
+### get all college
+GET  http://localhost:4000/api/fact-and-figure
+
+
+### get college by id
+GET  http://localhost:4000/api/fact-and-figure/6402130f3ce616aa6aa3004d
+
+### delete college
+DELETE   http://localhost:4000/api/fact-and-figure/6402130f3ce616aa6aa3004d
+
+###  create college
+POST  http://localhost:4000/api/fact-and-figure
+Content-Type: application/json
+
+{
+    
+    "count": 690,
+    "descriptionAr": "descriptionAr",
+    "descriptionEn": "description English"
+}
+
+###  update  college
+PUT  http://localhost:4000/api/fact-and-figure/6402130b3ce616aa6aa30049
+Content-Type: application/json
+
+{
+    "count": 892
+}

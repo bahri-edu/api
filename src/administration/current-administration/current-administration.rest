@@ -1,0 +1,37 @@
+### get all college
+GET  http://localhost:4000/api/current-administration
+
+
+### get college by id
+GET  http://localhost:4000/api/current-administration/640457f914f7a3bce526a770
+
+### delete college
+DELETE   http://localhost:4000/api/current-administration/6404a76fb1d68d99a6b3dc52
+
+###  create college
+POST  http://localhost:4000/api/current-administration
+Content-Type: application/json
+
+{
+    "nameAr": "medicen",
+    "nameEn": "name en",
+    "birthdate": "1/2/2020",
+    "degreeAr": "degreeAr",
+    "degreeEn": "degreeEn",
+    "phone": "phone",
+    "positionAr": "positionAr",
+    "positionEn": "positionEn",
+    "type": 1,
+    "qualificationAr": ["qualificationAr", "qualificationAr 2"],
+    "qualificationEn": ["qualificationEn", "qualificationEn 2"],
+    "socials": ["socials1", "socials 2"],
+    "email": "email@gmail.com"
+}
+
+###  update  college
+PUT  http://localhost:4000/api/current-administration/640457f914f7a3bce526a770
+Content-Type: application/json
+
+{
+    "titleAr": "medicen update"
+}

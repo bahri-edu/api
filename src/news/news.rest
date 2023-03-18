@@ -1,0 +1,34 @@
+### get all college
+GET  http://localhost:4000/api/news
+
+
+### get college by id
+GET  http://localhost:4000/news/63f29551aa91f3b33cef1801
+
+
+
+### delete college
+DELETE   http://localhost:4000/news/63f29551aa91f3b33cef1801
+
+###  create college
+POST  http://localhost:4000/api/news
+Content-Type: application/json
+
+{
+    "titleAr": "89",
+    "titleEn": "name en",
+    "descriptionAr": "dddvdvdvdv",
+    "descriptionEn": "omdurman",
+    "type": "ACADEMIC"
+}
+
+###  update  college
+PUT  http://localhost:4000/news/63f29551aa91f3b33cef1801
+Content-Type: application/json
+
+{
+   "titleAr": "medicen",
+    "titleEn": "name en",
+    "descriptionAr": "dddvdvdvdv",
+    "descriptionEn": "omdurman"
+}
