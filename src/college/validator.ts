@@ -1,43 +1,61 @@
 import { body, check } from "express-validator";
 
 export const collegeValidator = [
-  body("nameAr")
+  body("name.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic name require")
-    .isString()
-    .withMessage("arabic name must be string"),
-  body("nameEn")
+    .withMessage("arabic name require"),
+  body("name.en")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
+
+  body("location.ar")
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("arabic location require"),
+  body("location.en")
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("english location require"),
   body("code")
     .trim()
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("college code  require")
-    .isString()
-    .withMessage("college code  must be string"),
+    .withMessage("college code  require"),
 ];
 
 export const collegeUpdateValidator = [
-  check("nameAr")
-    .if(body("nameAr").exists())
+  check("name.ar")
+    .if(body("name.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic name require")
-    .isString()
-    .withMessage("arabic name must be string"),
-  check("nameEn")
-    .if(body("nameEn").exists())
+    .withMessage("arabic name require"),
+  check("name.en")
+    .if(body("name.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
+
+  check("location.ar")
+    .if(body("location.ar").exists())
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("arabic location require"),
+  check("location.en")
+    .if(body("location.en").exists())
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("english location require"),
 
   check("code")
     .if(body("code").exists())
@@ -45,7 +63,5 @@ export const collegeUpdateValidator = [
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("college code  require")
-    .isString()
-    .withMessage("college code  must be string"),
+    .withMessage("college code  require"),
 ];

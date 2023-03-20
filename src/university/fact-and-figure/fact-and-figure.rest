@@ -15,7 +15,10 @@ Content-Type: application/json
 {
     
     "count": 690,
-    "descriptionAr": "descriptionAr",
+    "description": {
+        "ar": "arabic title",
+        "en": "english  title"
+    },
     "descriptionEn": "description English"
 }
 

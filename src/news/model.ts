@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../helpers";
 
 export enum NewsEnum {
   ACADEMIC = "ACADEMIC",
@@ -6,19 +7,15 @@ export enum NewsEnum {
 }
 
 export interface NewsAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
   images?: string[];
   type: NewsEnum;
 }
 
 export interface NewsDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
   images?: string[];
   type: NewsEnum;
 }
@@ -29,27 +26,12 @@ export interface NewsModel extends Model<NewsDoc> {
 
 const newsSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
-    },
+    title: translateSchema,
+    description: translateSchema,
     type: {
       type: String,
       default: NewsEnum.GENERAL,
     },
-
     images: [{ type: String, default: [] }],
   },
   {

@@ -13,12 +13,16 @@ POST  http://localhost:4000/api/vision-mission
 Content-Type: application/json
 
 {
-    "titleAr": " المعرفية الرائدة ",
-    "titleEn": " المعرفية الرائدة ",
-    "descriptionAr": "تطمح جامعة بحري إلى أن تصبح المؤسسة المعرفية الرائدة في إفريقيا والعالم العربي.",
+    "title": {
+        "ar": "arbic title",
+        "en": "english title"
+    },
+   "description": {
+        "ar": "تطمح جامعة بحري إلى أن تصبح المؤسسة المعرفية الرائدة في إفريقيا والعالم العربي.",
+        "en": "english title"
+    },
      "icon": "icon",
-     "seqNo": 1,
-    "descriptionEn": "تطمح جامعة بحري إلى أن تصبح المؤسسة المعرفية الرائدة في إفريقيا والعالم العربي."
+     "seqNo": 1
 }
 
 ###  update  college

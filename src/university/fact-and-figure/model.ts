@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
 export enum FactType {
   STUDENT = "STUDENT",
@@ -7,15 +8,13 @@ export enum FactType {
 
 export interface FactAndFigureAttrs {
   count: number;
-  descriptionAr: string;
-  descriptionEn: string;
+  description: Translate;
   type: FactType;
 }
 
 export interface FactAndFigureDoc extends Document {
   count: number;
-  descriptionAr: string;
-  descriptionEn: string;
+  description: Translate;
   type: FactType;
 }
 
@@ -29,14 +28,8 @@ const factAndFigureSchema = new Schema(
       type: Number,
       require: true,
     },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
-    },
+    description: translateSchema,
+
     type: {
       type: String,
       default: FactType.STUDENT,

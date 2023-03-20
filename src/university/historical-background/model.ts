@@ -1,17 +1,14 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
 export interface HistoricalBackgroundAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
 }
 
 export interface HistoricalBackgroundDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
 }
 
 export interface HistoricalBackgroundModel
@@ -21,22 +18,8 @@ export interface HistoricalBackgroundModel
 
 const historicalBackgroundSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
-    },
+    title: translateSchema,
+    description: translateSchema,
   },
   {
     toJSON: {

@@ -1,19 +1,16 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
 export interface VisionMissionAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
   icon: string;
   seqNo: number;
 }
 
 export interface VisionMissionDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
   icon: string;
   seqNo: number;
 }
@@ -24,22 +21,8 @@ export interface VisionMissionModel extends Model<VisionMissionDoc> {
 
 const visionMissionSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
-    },
+    title: translateSchema,
+    description: translateSchema,
     icon: {
       type: String,
       require: true,

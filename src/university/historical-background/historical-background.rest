@@ -6,17 +6,21 @@ GET  http://localhost:4000/api/historical-background
 GET  http://localhost:4000/api/historical-background/64020f3df13f823de6a7444d
 
 ### delete college
-DELETE   http://localhost:4000/api/historical-background/64020f3df13f823de6a7444d
+DELETE   http://localhost:4000/api/historical-background/641820dbd0e60998aa36ded2
 
 ###  create college
 POST  http://localhost:4000/api/historical-background
 Content-Type: application/json
 
 {
-    "titleAr": "medicen",
-    "titleEn": "name en",
-    "descriptionAr": "descriptionAr",
-    "descriptionEn": "description English"
+    "title": {
+        "ar": "arabic title",
+        "en": "english  title"
+    },
+    "description": {
+        "ar": "arabic title",
+        "en": "english  title"
+    }
 }
 
 ###  update  college

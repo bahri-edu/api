@@ -42,6 +42,7 @@ router.post(
       const college = await College.build(req.body).save();
       return res.status(201).json(college);
     } catch (error) {
+      console.log(error);
       throw new InternalServerError();
     }
   }

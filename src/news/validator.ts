@@ -1,70 +1,54 @@
 import { body, check } from "express-validator";
 
 export const newsValidator = [
-  body("titleAr")
+  body("title.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic title require")
-    .isString()
-    .withMessage("arabic title must be string"),
-  body("titleEn")
+    .withMessage("arabic title require"),
+  body("title.en")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english title require")
-    .isString()
-    .withMessage("english title must be string"),
+    .withMessage("english title require"),
 
-  body("descriptionAr")
+  body("description.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic description require")
-    .isString()
-    .withMessage("arabic description must be string"),
-  body("descriptionEn")
+    .withMessage("arabic description require"),
+  body("description.en")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english description require")
-    .isString()
-    .withMessage("arabic description must be string"),
+    .withMessage("english description require"),
 ];
 
 export const newsUpdateValidator = [
-  check("titleAr")
-    .if(body("titleAr").exists())
+  check("title.ar")
+    .if(body("title.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic title require")
-    .isString()
-    .withMessage("arabic title must be string"),
-  check("titleEn")
-    .if(body("titleEn").exists())
+    .withMessage("arabic title require"),
+  check("title.en")
+    .if(body("title.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english title require")
-    .isString()
-    .withMessage("english title must be string"),
+    .withMessage("english title require"),
 
-  check("descriptionAr")
-    .if(body("descriptionAr").exists())
+  check("description.ar")
+    .if(body("description.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic description require")
-    .isString()
-    .withMessage("arabic description must be string"),
+    .withMessage("arabic description require"),
 
-  check("descriptionEn")
-    .if(body("descriptionEn").exists())
+  check("description.en")
+    .if(body("description.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english description require")
-    .isString()
-    .withMessage("arabic description must be string"),
+    .withMessage("english description require"),
 ];

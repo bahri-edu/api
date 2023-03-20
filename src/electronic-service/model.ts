@@ -1,15 +1,14 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../helpers";
 
 export interface EServiceAttrs {
-  titleAr: string;
-  titleEn: string;
+  title: Translate;
   icon: string;
   seqNo: number;
 }
 
 export interface EServiceDoc extends Document {
-  titleAr: string;
-  titleEn: string;
+  title: Translate;
   icon: string;
   seqNo: number;
 }
@@ -20,14 +19,7 @@ export interface EServiceModel extends Model<EServiceDoc> {
 
 const eServiceSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
+    title: translateSchema,
     icon: {
       type: String,
       require: true,

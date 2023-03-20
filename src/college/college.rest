@@ -1,5 +1,5 @@
 ### get all college
-GET  http://localhost:4000/colleges
+GET  http://localhost:4000/api/colleges
 
 
 ### get college by id
@@ -9,14 +9,19 @@ GET  http://localhost:4000/colleges/63f276c5ce33bff8070decbc
 DELETE   http://localhost:4000/colleges/63f2768cce33bff8070decac
 
 ###  create college
-POST  http://localhost:4000/colleges
+POST  http://localhost:4000/api/colleges
 Content-Type: application/json
 
 {
-    "nameAr": "medicen",
-    "nameEn": "name en",
-    "code": "dddvdvdvdv",
-    "location": "omdurman"
+    "name": {
+        "ar": "arabic name",
+        "en": "english name"
+    },
+     "location": {
+        "ar": "arabic location",
+        "en": "english location"
+    },
+    "code": "dddvdvddddvdv"
 }
 
 ###  update  college

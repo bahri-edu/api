@@ -8,14 +8,14 @@ export const factAndFigureValidator = [
     .withMessage(" count require")
     .isNumeric()
     .withMessage(" count must be number"),
-  body("descriptionAr")
+  body("description.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic description require")
     .isString()
     .withMessage("arabic description must be string"),
-  body("descriptionEn")
+  body("description.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -32,14 +32,14 @@ export const factAndFigureUpdateValidator = [
     .isNumeric()
     .withMessage("count must be number"),
 
-  check("descriptionAr")
-    .if(body("descriptionAr").exists())
+  check("description.ar")
+    .if(body("description.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic description require"),
-  check("descriptionEn")
-    .if(body("descriptionEn").exists())
+  check("description.en")
+    .if(body("description.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })

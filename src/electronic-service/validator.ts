@@ -1,12 +1,12 @@
 import { body, check } from "express-validator";
 
 export const eServiceValidator = [
-  body("titleAr")
+  body("title.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic title require"),
-  body("titleEn")
+  body("title.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -19,14 +19,14 @@ export const eServiceValidator = [
 ];
 
 export const eServiceUpdateValidator = [
-  check("titleAr")
-    .if(body("titleAr").exists())
+  check("title.ar")
+    .if(body("title.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic title require"),
-  check("titleEn")
-    .if(body("titleEn").exists())
+  check("title.en")
+    .if(body("title.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })

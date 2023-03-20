@@ -1,58 +1,49 @@
-import { Document, Model, model, Schema} from "mongoose"
-
-
+import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../helpers";
 
 export interface CollegeAttrs {
-    nameAr: string
-    nameEn: string
-    code: string
-    location?: string
+  name: Translate;
+  code: string;
+  location: Translate;
 }
 
-
 export interface CollegeDoc extends Document {
-    nameAr: string
-    nameEn: string
-    code: string
-    location?: string
+  name: Translate;
+  code: string;
+  location: Translate;
 }
 
 export interface CollegeModel extends Model<CollegeDoc> {
-    build(attrs: CollegeAttrs): CollegeDoc
+  build(attrs: CollegeAttrs): CollegeDoc;
 }
 
-const collegeSchema = new Schema({
-    nameAr: {
-        type: String,
-        require: true,
-    },
-    nameEn: {
-        type: String,
-        require: true,
-    },
+const collegeSchema = new Schema(
+  {
+    name: translateSchema,
+    location: translateSchema,
     code: {
-        type: String,
-        require: true,
-        unique: true
+      type: String,
+      require: true,
+      unique: true,
     },
-    location: {
-        type: String,
-    }
-
-},
-{
+  },
+  {
     toJSON: {
-        transform(doc, ret) {
-          ret.id = ret._id;
-          delete ret._id;
-          delete ret.__v;
-        },
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
       },
-      timestamps: true
-})
+    },
+    timestamps: true,
+  }
+);
 
 collegeSchema.statics.build = (attrs: CollegeAttrs) => {
-    return new College(attrs)
-}
+  return new College(attrs);
+};
 
-export const College = model<CollegeDoc, CollegeModel>("College", collegeSchema)
+export const College = model<CollegeDoc, CollegeModel>(
+  "College",
+  collegeSchema
+);

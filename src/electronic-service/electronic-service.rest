@@ -13,8 +13,11 @@ POST  http://localhost:4000/api/electronic-service
 Content-Type: application/json
 
 {
-    "titleAr": "medicen",
-    "titleEn": "name en",
+    
+    "title":  {
+        "ar": "arabic title",
+        "en": "english  title"
+    },
     "icon": "descriptionAr"
 }
 
