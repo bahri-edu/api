@@ -12,16 +12,16 @@ export const collegeValidator = [
     })
     .withMessage("english name require"),
 
-  body("location.ar")
+  body("introduction.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic location require"),
-  body("location.en")
+    .withMessage("arabic introduction require"),
+  body("introduction.en")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english location require"),
+    .withMessage("english introduction require"),
   body("code")
     .trim()
     .notEmpty({
@@ -44,18 +44,18 @@ export const collegeUpdateValidator = [
     })
     .withMessage("english name require"),
 
-  check("location.ar")
-    .if(body("location.ar").exists())
+  check("introduction.ar")
+    .if(body("introduction.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic location require"),
-  check("location.en")
-    .if(body("location.en").exists())
+    .withMessage("arabic introduction require"),
+  check("introduction.en")
+    .if(body("introduction.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english location require"),
+    .withMessage("english introduction require"),
 
   check("code")
     .if(body("code").exists())

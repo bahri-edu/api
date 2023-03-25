@@ -17,11 +17,36 @@ Content-Type: application/json
         "ar": "arabic name",
         "en": "english name"
     },
-     "location": {
-        "ar": "arabic location",
-        "en": "english location"
+     "introduction": {
+        "ar": "arabic introduction",
+        "en": "english introduction"
     },
-    "code": "dddvdvddddvdv"
+    "info": {
+        "vision" : {
+             "ar": "arabic introduction",
+             "en": "english introduction"
+        },
+        "ccademicQualification" : {
+             "ar": "arabic ccademicQualification",
+             "en": "english ccademicQualification"
+        },
+        "bachelorProgram" : {
+             "ar": "arabic bachelorProgram",
+             "en": "english bachelorProgram"
+        },
+        "registrationStep" : {
+             "ar": "arabic registrationStep",
+             "en": "english registrationStep"
+        },
+        "collegeDepartment" : [{
+             "ar": "arabic introduction",
+             "en": "english introduction"
+        }]
+    },
+    "counter": {
+        "student": 55
+    },
+    "code": "dddvdssssvdddqdddvdv"
 }
 
 ###  update  college
