@@ -1,17 +1,16 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
 export interface LogoAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
+  seqNo: number;
 }
 
 export interface LogoDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  description: Translate;
+  seqNo: number;
 }
 
 export interface LogoModel extends Model<LogoDoc> {
@@ -20,21 +19,11 @@ export interface LogoModel extends Model<LogoDoc> {
 
 const logoSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
+    title: translateSchema,
+    description: translateSchema,
+    seqNo: {
+      type: Number,
+      default: 99,
     },
   },
   {
@@ -43,6 +32,8 @@ const logoSchema = new Schema(
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
+        delete ret.title._id;
+        delete ret.description._id;
       },
     },
     timestamps: true,

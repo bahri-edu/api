@@ -5,16 +5,16 @@ import {
 } from "@meemsd/common";
 import e, { Router, Request, Response } from "express";
 import { BulkArray, sortValidator } from "../../helpers";
-import { Logo } from "./model";
-import { logoUpdateValidator, logoValidator } from "./validator";
+import { UploadFile } from "./model";
+import { uploadFileValidator, uploadFileUpdateValidator } from "./validator";
 
 const router: Router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const logos = await Logo.find().sort({ seqNo: 1 });
+    const uploadFiles = await UploadFile.find().sort({ seqNo: 1 });
 
-    res.status(200).json(logos);
+    res.status(200).json(uploadFiles);
   } catch (error) {
     throw new InternalServerError();
   }
@@ -24,11 +24,11 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const logo = await Logo.findById(id);
+    const uploadFile = await UploadFile.findById(id);
 
-    if (!logo) throw new NotFoundError();
+    if (!uploadFile) throw new NotFoundError();
 
-    res.status(200).json(logo);
+    res.status(200).json(uploadFile);
   } catch (error) {
     throw new NotFoundError();
   }
@@ -36,14 +36,13 @@ router.get("/:id", async (req, res) => {
 
 router.post(
   "/",
-  logoValidator,
+  uploadFileValidator,
   validationMiddleware,
   async (req: Request, res: Response) => {
     try {
-      const logo = await Logo.build(req.body).save();
-      return res.status(201).json(logo);
+      const uploadFile = await UploadFile.build(req.body).save();
+      return res.status(201).json(uploadFile);
     } catch (error) {
-      console.log(error);
       throw new InternalServerError();
     }
   }
@@ -51,19 +50,18 @@ router.post(
 
 router.put(
   "/:id",
-  logoUpdateValidator,
+  uploadFileUpdateValidator,
   validationMiddleware,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
 
-      const logo = await Logo.findByIdAndUpdate(id, req.body, {
+      const uploadFile = await UploadFile.findByIdAndUpdate(id, req.body, {
         new: true,
       });
-      if (!logo) throw new NotFoundError();
-      return res.status(200).json(logo);
+      if (!uploadFile) throw new NotFoundError();
+      return res.status(200).json(uploadFile);
     } catch (error) {
-      console.log(error);
       throw new InternalServerError(JSON.stringify(error));
     }
   }
@@ -73,9 +71,9 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const logo = await Logo.findByIdAndDelete(id);
+    const uploadFile = await UploadFile.findByIdAndDelete(id);
 
-    if (!logo) throw new NotFoundError();
+    if (!uploadFile) throw new NotFoundError();
 
     res.status(200).json({ message: "dlete succssful" });
   } catch (error) {
@@ -93,7 +91,7 @@ router.post(
 
       const bulkArr = BulkArray(sort);
 
-      Logo.bulkWrite(bulkArr);
+      UploadFile.bulkWrite(bulkArr);
 
       return res.status(200).json({ message: "sort successful" });
     } catch (error) {
@@ -102,4 +100,4 @@ router.post(
   }
 );
 
-export { router as logoRouter };
+export { router as uploadFileRouter };

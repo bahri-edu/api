@@ -3,7 +3,7 @@ GET  http://localhost:4000/api/electronic-service
 
 
 ### get college by id
-GET  http://localhost:4000/api/electronic-service/6409ae4db92f75d7e2caaf64
+GET  http://localhost:4000/api/electronic-service/64223758178d477982f117ba
 
 ### delete college
 DELETE   http://localhost:4000/api/electronic-service/6409ae4db92f75d7e2caaf64
@@ -18,13 +18,14 @@ Content-Type: application/json
         "ar": "arabic title",
         "en": "english  title"
     },
-    "icon": "descriptionAr"
+    "icon": "descriptionAr",
+    "url": "effefefefef"
 }
 
 ###  update  college
-PUT  http://localhost:4000/api/electronic-service/6409ae4db92f75d7e2caaf64
+PUT  http://localhost:4000/api/electronic-service/64223758178d477982f117ba
 Content-Type: application/json
 
 {
-    "titleAr": "medicen update"
+    "url": "medicen update"
 }

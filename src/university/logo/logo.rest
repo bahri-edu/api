@@ -1,5 +1,5 @@
 ### get all college
-GET  http://localhost:4000/api/vision-mission
+GET  http://localhost:4000/api/logo
 
 
 ### get college by id
@@ -9,14 +9,19 @@ GET  http://localhost:4000/api/vision-mission/6401af0be2dc006818125376
 DELETE   http://localhost:4000/api/vision-mission/6401aefee2dc006818125374
 
 ###  create college
-POST  http://localhost:4000/api/vision-mission
+POST  http://localhost:4000/api/logo
 Content-Type: application/json
 
 {
-    "titleAr": "medicen",
-    "titleEn": "name en",
-    "descriptionAr": "descriptionAr",
-    "descriptionEn": "description English"
+    "title": {
+        "ar": "اسم الجامعة مكتوب تحت الشعار باللغتين العربية والإنجليزية",
+        "en": "The name of the university is written under the logo in both Arabic and English"
+    },
+    "description": {
+        "ar": "يرمز إلى الجذور العميقة والأصالة",
+        "en": "t symbolizes deep roots and originality"
+    },
+    "seqNo": 9
 }
 
 ###  update  college

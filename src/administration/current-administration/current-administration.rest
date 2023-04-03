@@ -5,26 +5,50 @@ GET  http://localhost:4000/api/current-administration
 ### get college by id
 GET  http://localhost:4000/api/current-administration/640457f914f7a3bce526a770
 
+
+###
+GET  http://localhost:4000/api/current-administration/position-type/3
+
 ### delete college
-DELETE   http://localhost:4000/api/current-administration/6404a76fb1d68d99a6b3dc52
+DELETE   http://localhost:4000/api/current-administration/64276d60e79d4e96f989bbcd
 
 ###  create college
 POST  http://localhost:4000/api/current-administration
 Content-Type: application/json
 
 {
-    "nameAr": "medicen",
-    "nameEn": "name en",
+    "name": {
+        "ar": "name ar",
+        "en": "name en"
+    },
+    "imageUrl": "jhgjftffuygygguygufu",
     "birthdate": "1/2/2020",
-    "degreeAr": "degreeAr",
-    "degreeEn": "degreeEn",
+    "degree": {
+        "ar": "degree ar",
+        "en": "degree en"
+    },
     "phone": "phone",
-    "positionAr": "positionAr",
-    "positionEn": "positionEn",
-    "type": 1,
-    "qualificationAr": ["qualificationAr", "qualificationAr 2"],
-    "qualificationEn": ["qualificationEn", "qualificationEn 2"],
-    "socials": ["socials1", "socials 2"],
+    "position":  {
+        "ar": "position ar",
+        "en": "position en"
+    },
+    "positionType": 1,
+    "qualifications": [
+         {
+            "ar": "qualification ar",
+            "en": "qualification en"
+         },
+            {
+            "ar": "qualification ar",
+            "en": "qualification en"
+        }
+    ],
+    "socials": [
+        {
+            "icon": "efeffefefe",
+            "url": "fffwfwfw"
+        }
+    ],
     "email": "email@gmail.com"
 }
 

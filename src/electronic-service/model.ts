@@ -4,12 +4,14 @@ import { Translate, translateSchema } from "../helpers";
 export interface EServiceAttrs {
   title: Translate;
   icon: string;
+  url: string;
   seqNo: number;
 }
 
 export interface EServiceDoc extends Document {
   title: Translate;
   icon: string;
+  url: string;
   seqNo: number;
 }
 
@@ -23,6 +25,10 @@ const eServiceSchema = new Schema(
     icon: {
       type: String,
       require: true,
+    },
+    url: {
+      type: String,
+      default: "#",
     },
     seqNo: {
       type: Number,

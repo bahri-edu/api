@@ -1,17 +1,14 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../../helpers";
 
 export interface ViceChancellorMessageAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  descriptions: Translate[];
 }
 
 export interface ViceChancellorMessageDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
+  title: Translate;
+  descriptions: Translate[];
 }
 
 export interface ViceChancellorMessageModel
@@ -21,22 +18,8 @@ export interface ViceChancellorMessageModel
 
 const viceChancellorMessageSchema = new Schema(
   {
-    titleAr: {
-      type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
-    },
+    title: translateSchema,
+    descriptions: [translateSchema],
   },
   {
     toJSON: {
@@ -44,6 +27,8 @@ const viceChancellorMessageSchema = new Schema(
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
+        delete ret.title._id;
+        ret.descriptions.map((desc: any) => delete desc._id);
       },
     },
     timestamps: true,

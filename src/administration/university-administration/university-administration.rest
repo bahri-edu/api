@@ -1,0 +1,92 @@
+### get all college
+GET  http://localhost:4000/api/university-administration
+
+
+### get college by id
+GET  http://localhost:4000/api/university-administration/642972c58b1a6557bcc48e34
+
+###
+GET  http://localhost:4000/api/university-administration/slug/university-vice-chancellors-office
+
+### delete college
+DELETE   http://localhost:4000/api/university-administration/642782b3fca21f2fe95678ea
+
+###  create college
+POST  http://localhost:4000/api/university-administration
+Content-Type: application/json
+
+{
+    "unit": {
+        "ar": "unit ar",
+        "en": "unit en"
+    },
+    "introduction": {
+        "ar": "introduction ar",
+        "en": "introduction en"
+    },
+    "info": [
+        {
+            "title": {
+                "ar": "unit ar",
+                "en": "unit en"
+            },
+            "description": {
+                "ar": "description ar",
+                "en": "description en"
+            },
+            "icon": "dfdfdfdfdfdfdfdf"
+
+        },
+        {
+            "title": {
+                "ar": "unit ar",
+                "en": "unit en"
+            },
+            "description": {
+                "ar": "description ar",
+                "en": "description en"
+            },
+            "icon": "dfdfdfdfdfdfdfdf"
+
+        }
+    ],
+     "staff": [
+        {
+            "name": {
+                "ar": "name ar",
+                "en": "name en"
+            },
+            "position": {
+                "ar": "position ar",
+                "en": "position en"
+            },
+            "email": "email",
+            "phone": "phone"
+
+        },
+        {
+            "name": {
+                "ar": "name ar",
+                "en": "name en"
+            },
+            "position": {
+                "ar": "position ar",
+                "en": "position en"
+            },
+            "email": "email",
+            "phone": "phone"
+
+        }
+    ]
+}
+
+###  update  college
+PUT  http://localhost:4000/api/university-administration/642976248b1a6557bcc48e4b
+Content-Type: application/json
+
+{
+    "unit": {
+       "en": "Human Resource Management",
+      "ar": "إدارة الموارد البشرية"
+  }
+}

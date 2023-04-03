@@ -1,6 +1,6 @@
 import { body, check } from "express-validator";
 
-export const viceChancellorMessageValidator = [
+export const uploadFileValidator = [
   body("title.ar")
     .notEmpty({
       ignore_whitespace: true,
@@ -11,9 +11,14 @@ export const viceChancellorMessageValidator = [
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
+  body("url")
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("url  require"),
 ];
 
-export const viceChancellorMessageUpdateValidator = [
+export const uploadFileUpdateValidator = [
   check("title.ar")
     .if(body("title.ar").exists())
     .notEmpty({
@@ -26,4 +31,10 @@ export const viceChancellorMessageUpdateValidator = [
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
+  check("url")
+    .if(body("url").exists())
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("url require"),
 ];

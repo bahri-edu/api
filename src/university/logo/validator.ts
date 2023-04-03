@@ -1,26 +1,26 @@
 import { body, check } from "express-validator";
 
 export const logoValidator = [
-  body("titleAr")
+  body("title.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic name require")
     .isString()
     .withMessage("arabic name must be string"),
-  body("titleEn")
+  body("title.en")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
-  body("descriptionAr")
+  body("description.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic description require")
     .isString()
     .withMessage("arabic description must be string"),
-  body("descriptionEn")
+  body("description.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -28,26 +28,26 @@ export const logoValidator = [
 ];
 
 export const logoUpdateValidator = [
-  check("titleAr")
-    .if(body("titleAr").exists())
+  check("title.ar")
+    .if(body("title.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic name require"),
-  check("titleEn")
-    .if(body("titleEn").exists())
+  check("title.en")
+    .if(body("title.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english name require"),
-  check("descriptionAr")
-    .if(body("descriptionAr").exists())
+  check("description.ar")
+    .if(body("description.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic description require"),
-  check("descriptionEn")
-    .if(body("descriptionEn").exists())
+  check("description.en")
+    .if(body("description.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })

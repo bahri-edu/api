@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
 export enum CurrentPositionTypeEnum {
   VICE_CHANCELLOR,
@@ -13,34 +14,28 @@ type Social = {
 };
 
 export interface CurrentAdministrationAttrs {
-  nameAr: string;
-  nameEn: string;
+  name: Translate;
+  imageUrl: string;
   birthdate: string;
-  degreeAr: string;
-  degreeEn: string;
+  degree: Translate;
   email: string;
   phone: string;
-  positionAr: string;
-  positionEn: string;
-  qualificationAr: string[];
-  qualificationEn: string[];
+  position: Translate;
+  qualifications: Translate[];
   socials: Social[];
   positionType: CurrentPositionTypeEnum;
 }
 
 export interface CurrentAdministrationDoc extends Document {
-  nameAr: string;
-  nameEn: string;
+  name: Translate;
+  imageUrl: string;
   birthdate: string;
-  degreeAr: string;
-  degreeEn: string;
+  degree: Translate;
   email: string;
   phone: string;
-  positionAr: string;
-  positionEn: string;
-  qualificationAr: string[];
-  qualificationEn: string[];
-  socials: string[];
+  position: Translate;
+  qualifications: Translate[];
+  socials: Social[];
   positionType: CurrentPositionTypeEnum;
 }
 
@@ -49,28 +44,29 @@ export interface CurrentAdministrationModel
   build(attrs: CurrentAdministrationAttrs): CurrentAdministrationDoc;
 }
 
+const socialSchema = new Schema({
+  icon: {
+    type: String,
+    require: true,
+  },
+  url: {
+    type: String,
+    require: true,
+  },
+});
+
 const currentAdministrationSchema = new Schema(
   {
-    nameAr: {
-      type: String,
-      require: true,
-    },
-    nameEn: {
-      type: String,
-      require: true,
-    },
+    name: translateSchema,
     birthdate: {
       type: String,
       require: true,
     },
-    degreeAr: {
+    imageUrl: {
       type: String,
       require: true,
     },
-    degreeEn: {
-      type: String,
-      require: true,
-    },
+    degree: translateSchema,
     email: {
       type: String,
       require: true,
@@ -79,33 +75,9 @@ const currentAdministrationSchema = new Schema(
       type: String,
       require: true,
     },
-    positionAr: {
-      type: String,
-      require: true,
-    },
-    positionEn: {
-      type: String,
-      require: true,
-    },
-    qualificationAr: [
-      {
-        type: String,
-        require: true,
-      },
-    ],
-
-    qualificationEn: [
-      {
-        type: String,
-        require: true,
-      },
-    ],
-    socials: [
-      {
-        type: String,
-        require: true,
-      },
-    ],
+    position: translateSchema,
+    qualifications: [translateSchema],
+    socials: [socialSchema],
     positionType: {
       type: Number,
       require: true,
@@ -117,6 +89,11 @@ const currentAdministrationSchema = new Schema(
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
+        delete ret.name._id;
+        delete ret.degree._id;
+        delete ret.position._id;
+        ret.qualifications.map((qual: any) => delete qual._id);
+        ret.socials.map((qual: any) => delete qual._id);
       },
     },
     timestamps: true,

@@ -2,12 +2,12 @@ import { body, check } from "express-validator";
 import { isDate } from "util/types";
 
 export const currentAdministrationValidator = [
-  body("nameAr")
+  body("name.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic name require"),
-  body("nameEn")
+  body("name.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -18,13 +18,13 @@ export const currentAdministrationValidator = [
     })
     .withMessage(" birthdate require"),
 
-  body("degreeAr")
+  body("degree.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic  degree require"),
 
-  body("degreeEn")
+  body("degree.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -43,33 +43,31 @@ export const currentAdministrationValidator = [
     })
     .withMessage("phone require"),
 
-  body("positionAr")
+  body("position.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arbic position require"),
 
-  body("positionEn")
+  body("position.en")
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english position require"),
 
-  body("qualificationAr")
-    .notEmpty({
-      ignore_whitespace: true,
-    })
-    .withMessage("arabic  qualification require")
-    .isArray()
-    .withMessage("qualification must be array"),
+  body("qualifications").isArray().withMessage("qualification must be array"),
 
-  body("qualificationEn")
+  body("qualifications.*.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english qualification require")
-    .isArray()
-    .withMessage("qualification must be array"),
+    .withMessage("arabic  qualification require"),
+
+  body("qualifications.*.en")
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("english qualification require"),
 
   // body("socials.icon")
   //   .notEmpty({
@@ -79,7 +77,7 @@ export const currentAdministrationValidator = [
   //   .isArray()
   //   .withMessage("socials must be array"),
 
-  body("type")
+  body("positionType")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -87,14 +85,14 @@ export const currentAdministrationValidator = [
 ];
 
 export const currentAdministrationUpdateValidator = [
-  check("nameAr")
-    .if(body("nameAr").exists())
+  check("name.ar")
+    .if(body("name.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic name require"),
-  check("nameEn")
-    .if(body("nameEn").exists())
+  check("name.en")
+    .if(body("name.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -106,15 +104,15 @@ export const currentAdministrationUpdateValidator = [
       ignore_whitespace: true,
     })
     .withMessage(" birthdate require"),
-  check("degreeAr")
-    .if(body("degreeAr").exists())
+  check("degree.ar")
+    .if(body("degree.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arabic  degree require"),
 
-  check("degreeEn")
-    .if(body("degreeEn").exists())
+  check("degree.en")
+    .if(body("degree.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -136,37 +134,33 @@ export const currentAdministrationUpdateValidator = [
     })
     .withMessage("phone require"),
 
-  check("positionAr")
-    .if(body("positionAr").exists())
+  check("position.ar")
+    .if(body("position.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("arbic position require"),
 
-  check("positionEn")
-    .if(body("positionEn").exists())
+  check("position.en")
+    .if(body("position.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
     .withMessage("english position require"),
 
-  check("qualificationAr")
-    .if(body("qualificationAr").exists())
+  check("qualifications.*.ar")
+    .if(body("qualifications.*.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic  qualification require")
-    .isArray()
-    .withMessage("qualification must be array"),
+    .withMessage("arabic  qualification require"),
 
-  check("qualificationEn")
-    .if(body("qualificationEn").exists())
+  check("qualifications.*.en")
+    .if(body("qualifications.*.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english qualification require")
-    .isArray()
-    .withMessage("qualification must be array"),
+    .withMessage("english qualification require"),
 
   check("socials")
     .if(body("socials").exists())
@@ -177,10 +171,10 @@ export const currentAdministrationUpdateValidator = [
     .isArray()
     .withMessage("socials must be array"),
 
-  check("type")
-    .if(body("type").exists())
+  check("positionType")
+    .if(body("positionType").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("type require"),
+    .withMessage("positionType require"),
 ];

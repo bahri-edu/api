@@ -4,10 +4,10 @@ import {
   validationMiddleware,
 } from "@meemsd/common";
 import { Router, Request, Response } from "express";
-import { CurrentAdministration } from "./model";
+import { UniversityAdministration } from "./model";
 import {
-  currentAdministrationUpdateValidator,
-  currentAdministrationValidator,
+  universityAdministrationUpdateValidator,
+  universityAdministrationValidator,
 } from "./validator";
 
 const router: Router = Router();
@@ -19,11 +19,10 @@ const router: Router = Router();
  */
 router.get("/", async (req, res) => {
   try {
-    const currentAdministration = await CurrentAdministration.find();
+    const universityAdministration = await UniversityAdministration.find();
 
-    res.status(200).json(currentAdministration);
+    res.status(200).json(universityAdministration);
   } catch (error) {
-    console.log(error);
     throw new InternalServerError();
   }
 });
@@ -37,32 +36,29 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const currentAdministration = await CurrentAdministration.findById(id);
+    const universityAdministration = await UniversityAdministration.findById(
+      id
+    );
 
-    if (!currentAdministration) throw new NotFoundError();
+    if (!universityAdministration) throw new NotFoundError();
 
-    res.status(200).json(currentAdministration);
+    res.status(200).json(universityAdministration);
   } catch (error) {
     throw new NotFoundError();
   }
 });
 
-/**
- * ---------------------------------------------------------
- * get one by id
- * ---------------------------------------------------------
- */
-router.get("/position-type/:positionType", async (req, res) => {
+router.get("/slug/:slug", async (req, res) => {
   try {
-    const { positionType } = req.params;
+    const { slug } = req.params;
 
-    const currentAdministration = await CurrentAdministration.findOne({
-      positionType,
+    const universityAdministration = await UniversityAdministration.findOne({
+      slug,
     });
 
-    if (!currentAdministration) throw new NotFoundError();
+    if (!universityAdministration) throw new NotFoundError();
 
-    res.status(200).json(currentAdministration);
+    res.status(200).json(universityAdministration);
   } catch (error) {
     throw new NotFoundError();
   }
@@ -75,16 +71,15 @@ router.get("/position-type/:positionType", async (req, res) => {
  */
 router.post(
   "/",
-  currentAdministrationValidator,
+  universityAdministrationValidator,
   validationMiddleware,
   async (req: Request, res: Response) => {
     try {
-      const currentAdministration = await CurrentAdministration.build(
+      const universityAdministration = await UniversityAdministration.build(
         req.body
       ).save();
-      return res.status(201).json(currentAdministration);
+      return res.status(201).json(universityAdministration);
     } catch (error) {
-      console.log(error);
       throw new InternalServerError();
     }
   }
@@ -97,20 +92,19 @@ router.post(
  */
 router.put(
   "/:id",
-  currentAdministrationUpdateValidator,
+  universityAdministrationUpdateValidator,
   validationMiddleware,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
 
-      const currentAdministration =
-        await CurrentAdministration.findByIdAndUpdate(id, req.body, {
+      const universityAdministration =
+        await UniversityAdministration.findByIdAndUpdate(id, req.body, {
           new: true,
         });
-      if (!currentAdministration) throw new NotFoundError();
-      return res.status(200).json(currentAdministration);
+      if (!universityAdministration) throw new NotFoundError();
+      return res.status(200).json(universityAdministration);
     } catch (error) {
-      console.log(error);
       throw new InternalServerError(JSON.stringify(error));
     }
   }
@@ -125,11 +119,10 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const currentAdministration = await CurrentAdministration.findByIdAndDelete(
-      id
-    );
+    const universityAdministration =
+      await UniversityAdministration.findByIdAndDelete(id);
 
-    if (!currentAdministration) throw new NotFoundError();
+    if (!universityAdministration) throw new NotFoundError();
 
     res.status(200).json({ message: "dlete succssful" });
   } catch (error) {
@@ -137,4 +130,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export { router as currentAdministrationRouter };
+export { router as universityAdministrationRouter };
