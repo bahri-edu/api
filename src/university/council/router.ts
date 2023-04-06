@@ -15,8 +15,14 @@ const router: Router = Router();
  * ---------------------------------------------------------
  */
 router.get("/", async (req, res) => {
+  let { councilType } = req.query;
+
+  councilType ? { councilType } : {};
+
   try {
-    const council = await Council.find();
+    const council = await Council.find({
+      ...(councilType && { councilType }),
+    });
 
     res.status(200).json(council);
   } catch (error) {
@@ -89,7 +95,7 @@ router.put(
 
 /**
  * ---------------------------------------------------------
- * delete ne
+ * delete one
  * ---------------------------------------------------------
  */
 router.delete("/:id", async (req, res) => {

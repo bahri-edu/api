@@ -1,29 +1,86 @@
 ### get all college
-GET  http://localhost:4000/api/council
+GET  http://localhost:4000/api/council?councilType=UNIVERSITYCOUNCIL
 
 
 ### get college by id
 GET  http://localhost:4000/api/council/64043dab5c74c6390165b5d3
 
 ### delete college
-DELETE   http://localhost:4000/api/council/64043dab5c74c6390165b5d3
+DELETE   http://localhost:4000/api/council/642dd44d1301f5b35393f31b
 
 ###  create college
 POST  http://localhost:4000/api/council
 Content-Type: application/json
 
 {
-    "titleAr": "medicen",
-    "titleEn": "name en",
-    "descriptionAr": "descriptionAr",
-    "descriptionEn": "description English",
-    "image": "image"
+    "title": {
+        "ar": "القواعد و النفاذ",
+        "en": "rules and enforcement"
+    },
+    "descriptions": [
+        {
+            "ar": "يشار إلى هذه القواعد باسم النظام الداخلي لمجلس جامعة بحري وتدخل حيز التنفيذ بمجرد توقيعها من قبل رئيس المجلس",
+            "en": "These rules are referred to as the “Bylaws of the University of Bahri Council” and come into effect once signed by the President of the Council"
+           
+        }, 
+        {
+            "ar" : "في هذه القواعد ، ما لم يقتض السياق معنى آخر ، يكون للكلمات التالية المعاني المخصصة لها فيما بعد على التوالي",
+            "en": "In these rules, unless the context requires another meaning, the following words shall have the meanings assigned to them hereinafter respectively",
+            "lists": [
+                {
+                    "title": {
+                         "ar": "القانون",
+                         "en": "the law"
+                    },
+                     "description": {
+                         "ar": "يقصد به قانون جامعة البحري 2011",
+                         "en": "It means the University of Bahri Law 2011"
+                    }
+                },
+                {
+                    "title": {
+                        "ar": "الرئيس",
+                        "en": "President"
+                    },
+                    "description": {
+                        "ar": "يقصد به رئيس مجلس جامعة البحري ، ويشمل أيضًا الشخص المنتخب من قبل المجلس وفقًا لهذه القواعد لرئاسة اجتماع له عند غياب الرئيس",
+                        "en": "Means the President of the University of Bahri Council, and also includes the person elected by the Council in accordance with these rules to preside over a meeting of it in the absence of the President"
+                    }
+                },
+                 {
+                    "title": {
+                        "ar": "السكرتير",
+                        "en": "secretary"
+                    },
+                    "description": {
+                        "ar": "يقصد به الموظف المعين وفقا للنظام الأساسي للعمل مقررا للمجلس.",
+                        "en": "It means the employee appointed in accordance with the statute of the work as a rapporteur of the Council."
+                    }
+                },
+                 {
+                    "title": {
+                        "ar": "نائب المدير",
+                        "en": "vice president"
+                    },
+                    "description": {
+                        "ar": "يقصد به نائب مدير جامعة بحري",
+                        "en": "It means the Vice Chancellor of Bahri University"
+                    }
+                }
+            ]
+        }
+
+    ]
 }
 
 ###  update  college
-PUT  http://localhost:4000/api/council/64043dab5c74c6390165b5d3
+PUT  http://localhost:4000/api/council/642dd5741301f5b35393f329
 Content-Type: application/json
 
 {
-    "titleAr": "medicen update"
+    "councilType": "UNIVERSITYCOUNCIL"
 }
+
+
+
+ 

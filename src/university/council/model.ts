@@ -1,46 +1,67 @@
-import { Document, Model, model, Schema } from "mongoose";
+import mongoose, { Document, Model, model, Schema } from "mongoose";
+import { Translate, translateSchema } from "../../helpers";
 
-export interface CouncilAttrs {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
-  image: string;
+export enum CouncilTypeEnum {
+  UNIVERSITYCOUNCIL = "UNIVERSITYCOUNCIL",
+  DEANSCOUNCIL = "DEANSCOUNCIL",
+  PROFESSORSCOUNCIL = "PROFESSORSCOUNCIL",
+}
+
+interface CouncilDescriptionList {
+  title: Translate;
+  description: Translate;
+}
+interface CouncilDescription {
+  ar: string;
+  en: string;
+  lists?: CouncilDescriptionList[];
+}
+
+interface CouncilAttrs {
+  title: Translate;
+  descriptions: CouncilDescription[];
+  councilType: CouncilTypeEnum;
+  image?: string;
 }
 
 export interface CouncilDoc extends Document {
-  titleAr: string;
-  titleEn: string;
-  descriptionAr: string;
-  descriptionEn: string;
-  image: string;
+  title: Translate;
+  descriptions: CouncilDescription[];
+  image?: string;
 }
 
 export interface CouncilModel extends Model<CouncilDoc> {
   build(attrs: CouncilAttrs): CouncilDoc;
 }
 
+const councilDescriptionListSchema = new Schema({
+  title: translateSchema,
+  description: translateSchema,
+});
+
+const councilDescriptionSchema = new Schema({
+  ar: {
+    type: String,
+    require: true,
+  },
+
+  en: {
+    type: String,
+    require: true,
+  },
+  lists: [councilDescriptionListSchema],
+});
+
 const councilSchema = new Schema(
   {
-    titleAr: {
+    title: translateSchema,
+    descriptions: [councilDescriptionSchema],
+    councilType: {
       type: String,
-      require: true,
-    },
-    titleEn: {
-      type: String,
-      require: true,
-    },
-    descriptionAr: {
-      type: String,
-      require: true,
-    },
-    descriptionEn: {
-      type: String,
-      require: true,
+      default: CouncilTypeEnum.UNIVERSITYCOUNCIL,
     },
     image: {
       type: String,
-      require: true,
     },
   },
   {
@@ -58,6 +79,8 @@ const councilSchema = new Schema(
 councilSchema.statics.build = (attrs: CouncilAttrs) => {
   return new Council(attrs);
 };
+
+mongoose.set("strictQuery", false);
 
 export const Council = model<CouncilDoc, CouncilModel>(
   "Council",

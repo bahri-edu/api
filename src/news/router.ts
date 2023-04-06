@@ -6,19 +6,31 @@ import {
 import { Router, Request, Response } from "express";
 import { News } from "./model";
 import { newsUpdateValidator, newsValidator } from "./validator";
+import { cuontCurrentPage } from "../helpers";
 
 const router: Router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { limit, type } = req.query;
+    let { limit, type, skip } = req.query;
 
-    const colleges = await News.find({ ...(type && { type }) })
+    const intLimit = limit ? +limit : null;
+    const intSkip = skip ? +skip : 0;
+
+    const totalDocs = await News.count();
+
+    const news = await News.find({ ...(type && { type }) })
 
       .sort({ createdAt: -1 })
-      .limit(+limit);
+      .skip(intSkip)
+      .limit(intLimit);
 
-    res.status(200).json(colleges);
+    res.status(200).json({
+      data: news,
+      totalDocs,
+      totalPages: Math.ceil(totalDocs / intLimit),
+      page: cuontCurrentPage(intLimit, intSkip),
+    });
   } catch (error) {
     throw new InternalServerError();
   }

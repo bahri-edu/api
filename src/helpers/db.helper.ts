@@ -70,3 +70,17 @@ export function stringToSlug(str: string) {
 
   return str;
 }
+
+export function cuontCurrentPage(limit: number, skip: number) {
+  if (skip == 0) {
+    return 1;
+  }
+
+  if (skip === limit) {
+    return 2;
+  }
+
+  if (skip > limit) {
+    return Math.ceil(skip / limit) + 1;
+  }
+}

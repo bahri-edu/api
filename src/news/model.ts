@@ -4,6 +4,7 @@ import { Translate, translateSchema } from "../helpers";
 export enum NewsEnum {
   ACADEMIC = "ACADEMIC",
   GENERAL = "GENERAL",
+  CAREERS = "CAREERS",
 }
 
 export interface NewsAttrs {

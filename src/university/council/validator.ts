@@ -1,26 +1,25 @@
 import { body, check } from "express-validator";
 
 export const councilValidator = [
-  body("titleAr")
+  body("title.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic name require")
-    .isString()
-    .withMessage("arabic name must be string"),
-  body("titleEn")
+    .withMessage("arabic title require"),
+  body("title.en")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english name require"),
-  body("descriptionAr")
+    .withMessage("english title require"),
+  body("descriptions").isArray().withMessage("descriptions must be arry"),
+
+  body("descriptions.*.ar")
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic description require")
-    .isString()
-    .withMessage("arabic description must be string"),
-  body("descriptionEn")
+    .withMessage("arabic description require"),
+
+  body("descriptions.*.en")
     .notEmpty({
       ignore_whitespace: true,
     })
@@ -28,28 +27,42 @@ export const councilValidator = [
 ];
 
 export const councilUpdateValidator = [
-  check("titleAr")
-    .if(body("titleAr").exists())
+  check("title.ar")
+    .if(body("title.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic name require"),
-  check("titleEn")
-    .if(body("titleEn").exists())
+    .withMessage("arabic title require"),
+  //uuuu
+  check("title.en")
+    .if(body("title.en").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english name require"),
-  check("descriptionAr")
-    .if(body("descriptionAr").exists())
+    .withMessage("english title require"),
+  check("councilType")
+    .if(body("councilType").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("arabic description require"),
-  check("descriptionEn")
-    .if(body("descriptionEn").exists())
+    .withMessage("councilType require"),
+
+  check("descriptions")
+    .if(body("descriptions").exists())
+    .isArray()
+    .withMessage("descriptions must be array"),
+
+  check("descriptions.*.ar")
+    .if(body("descriptions.*.ar").exists())
     .notEmpty({
       ignore_whitespace: true,
     })
-    .withMessage("english description require"),
+    .withMessage("descriptions must be array"),
+
+  check("descriptions.*.en")
+    .if(body("descriptions.*.en").exists())
+    .notEmpty({
+      ignore_whitespace: true,
+    })
+    .withMessage("english descriptions require"),
 ];
