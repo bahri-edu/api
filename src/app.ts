@@ -27,6 +27,13 @@ import {
 import { eServiceRouter } from "./electronic-service";
 import { contactRouter } from "./contact";
 import { relatedSiteRouter } from "./related-site";
+import {
+  deanshipAdministrationRouter,
+  deanshipDepartmentRouter,
+  deanshipRouter,
+  deanshipStudentServiceRouter,
+} from "./deanship";
+import { staffRouter } from "./staff";
 
 const app = express();
 const port = 4000;
@@ -61,6 +68,15 @@ app.use("/api/electronic-service", eServiceRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/related-site", relatedSiteRouter);
 
+// deanship
+app.use("/api/deanship", deanshipRouter);
+app.use("/api/deanship-administration", deanshipAdministrationRouter);
+app.use("/api/deanship-student-service", deanshipStudentServiceRouter);
+app.use("/api/deanship-department", deanshipDepartmentRouter);
+
+//staff
+
+app.use("/api/staff", staffRouter);
 app.all("*", () => {
   throw new NotFoundError();
 });

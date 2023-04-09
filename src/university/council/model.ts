@@ -2,9 +2,9 @@ import mongoose, { Document, Model, model, Schema } from "mongoose";
 import { Translate, translateSchema } from "../../helpers";
 
 export enum CouncilTypeEnum {
-  UNIVERSITYCOUNCIL = "UNIVERSITYCOUNCIL",
-  DEANSCOUNCIL = "DEANSCOUNCIL",
-  PROFESSORSCOUNCIL = "PROFESSORSCOUNCIL",
+  UNIVERSITYCOUNCIL = "university-council",
+  DEANSCOUNCIL = "deans-council",
+  PROFESSORSCOUNCIL = "professors-council",
 }
 
 interface CouncilDescriptionList {
